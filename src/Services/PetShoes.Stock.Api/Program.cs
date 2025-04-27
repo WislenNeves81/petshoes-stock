@@ -1,12 +1,13 @@
+using PetShoes.Stock.Api.Core.Infrastructure.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-//new RootBootstrapper().BootstrapperRegisterServices(builder.Services, builder.Configuration);
+new RootBootstrapper().BootstrapperRegisterServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
-
 
 if (app.Environment.IsDevelopment())
 {
