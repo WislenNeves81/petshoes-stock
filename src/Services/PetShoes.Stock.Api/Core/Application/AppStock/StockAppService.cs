@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using MyProfit.Foundation.Redis.Repositories.Interfaces;
 using PetShoes.Stock.Api.Core.Application.AppStock.Input;
 using PetShoes.Stock.Api.Core.Application.AppStock.Interface;
 using PetShoes.Stock.Api.Core.Application.AppStock.Mapping;
@@ -12,10 +11,13 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
     public class StockAppService : IStockAppService
     {
         private readonly IStockRepository _stockRepository;
+        private readonly ICacheRepository _cacheRepository;
 
-        public StockAppService(IStockRepository stockRepository)
+        public StockAppService(IStockRepository stockRepository, 
+                                ICacheRepository cacheRepository)
         {
             _stockRepository = stockRepository;
+            _cacheRepository = cacheRepository;
         }
         public async Task<StockViewModel> InsertAsync(StockInput shoeInput)
         {
@@ -30,6 +32,12 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
                         .ConfigureAwait(false);
 
             var stockViewModel = stock.ToViewModel();
+
+            var keyShoeCatalog = $"Brand ID: {stock.ProductId} - Item ID: {stock.Id}";
+
+            await _cacheRepository
+                     .InsertAsync<StockViewModel>(keyShoeCatalog, stockViewModel)
+                     .ConfigureAwait(false);
 
             return stockViewModel;
         }

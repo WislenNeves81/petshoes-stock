@@ -10,7 +10,14 @@
     <PackageReference Include="Marraia.MongoDb" Version="1.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
     <PackageReference Include="MongoDB.Driver" Version="3.3.0" />
+	<PackageReference Include="StackExchange.Redis" Version="2.8.31" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MyProfit.Foundation.Redis">
+      <HintPath>..\..\References\MyProfit.Foundation.Redis.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
