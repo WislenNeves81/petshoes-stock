@@ -4,6 +4,7 @@
     {
         Task InsertAsync(Entities.Stock stock);
         Task<Entities.Stock> GetStockByIdAsync(Guid itemStockId);
+        Task<Entities.Stock> GetStockByProductIdAsync(Guid productId);
         Task<Entities.Stock> UpdateAsync(Entities.Stock itemStockId);
         Task DeleteAsync(Guid itemStockId);
 

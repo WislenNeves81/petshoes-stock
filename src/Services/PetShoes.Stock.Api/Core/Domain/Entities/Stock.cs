@@ -5,9 +5,11 @@ namespace PetShoes.Stock.Api.Core.Domain.Entities
 {
     public class Stock : Entity<Guid>
     {
+        public Stock(){}
+
         public Guid ProductId { get; set; } 
         public string Color { get; set; } 
-        public string Size { get; set; } 
+        public int Size { get; set; } 
         public int Quantity { get; set; } 
         public decimal Price { get; set; }
         public bool Active { get; set; } = false;
@@ -15,7 +17,7 @@ namespace PetShoes.Stock.Api.Core.Domain.Entities
         public DateTime UpdatedAt { get; set; }
         public Stock(Guid productId, 
                         string color, 
-                        string size, 
+                        int size, 
                         int quantity, 
                         decimal price)
         {
@@ -28,7 +30,7 @@ namespace PetShoes.Stock.Api.Core.Domain.Entities
             SetDefaultValues();
         }
         public void Update(string color, 
-                           string size, 
+                           int size, 
                            int quantity, 
                            decimal price)
         {

@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ports", "Ports", "{A7EFD4E0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShoes.Stock.Api", "src\Services\PetShoes.Stock.Api\PetShoes.Stock.Api.csproj", "{29FD6FAD-A1E7-4956-8432-C278938048A0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0D186E05-F7ED-4469-8B3C-3E109AE5308A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShoes.Stock.Tests", "PetShoes.Stock.Tests\PetShoes.Stock.Tests.csproj", "{96D09434-7191-40A4-940E-DC594964572D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +21,16 @@ Global
 		{29FD6FAD-A1E7-4956-8432-C278938048A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29FD6FAD-A1E7-4956-8432-C278938048A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29FD6FAD-A1E7-4956-8432-C278938048A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D09434-7191-40A4-940E-DC594964572D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D09434-7191-40A4-940E-DC594964572D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D09434-7191-40A4-940E-DC594964572D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D09434-7191-40A4-940E-DC594964572D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{29FD6FAD-A1E7-4956-8432-C278938048A0} = {A7EFD4E0-CBB1-4269-93B1-FDA5ECB9C52E}
+		{96D09434-7191-40A4-940E-DC594964572D} = {0D186E05-F7ED-4469-8B3C-3E109AE5308A}
 	EndGlobalSection
 EndGlobal

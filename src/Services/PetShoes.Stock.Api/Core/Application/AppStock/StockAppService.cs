@@ -28,6 +28,13 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
                                    shoeInput.Price);
 
             await _stockRepository
+                    .GetStockByProductIdAsync(stock.ProductId)
+                    .ConfigureAwait(false);
+
+            if (stock is not null)
+                return default!;
+
+            await _stockRepository
                         .InsertAsync(stock)
                         .ConfigureAwait(false);
 
@@ -46,8 +53,8 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
             var stockItem = await _stockRepository
                                     .GetStockByIdAsync(itemStockId)
                                     .ConfigureAwait(false);
-            if (stockItem == null)
-                throw new Exception("Produto não encontrado");
+            if (stockItem is null)
+                return default!;
 
             return stockItem.ToViewModel();
         }

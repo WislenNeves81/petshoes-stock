@@ -22,6 +22,13 @@ namespace PetShoes.Stock.Api.Core.Repository
                             .Where(item => item.Id == itemStockId)
                             .FirstOrDefaultAsync();
         }
+        public async Task<Domain.Entities.Stock> GetStockByProductIdAsync(Guid productId)
+        {
+            return await Collection
+                            .AsQueryable()
+                            .Where(item => item.ProductId == productId)
+                            .FirstOrDefaultAsync();
+        }
 
         public async Task<Domain.Entities.Stock> UpdateAsync(Domain.Entities.Stock itemStockId)
         {
