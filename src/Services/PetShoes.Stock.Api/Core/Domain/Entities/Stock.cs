@@ -34,6 +34,7 @@ namespace PetShoes.Stock.Api.Core.Domain.Entities
         {
             Id = Guid.NewGuid();
             Active = true;
+            UpdatedAt = DateTime.Now;
         }
        
         public void UpdateQuantity(int quantity)
