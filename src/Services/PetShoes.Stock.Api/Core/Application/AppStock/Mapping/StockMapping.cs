@@ -10,10 +10,8 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock.Mapping
             {
                 Id = stock.Id,
                 ProductId = stock.ProductId,
-                Color = stock.Color,
                 Size = stock.Size,
-                Quantity = stock.Quantity,
-                Price = stock.Price
+                Quantity = stock.Quantity
             };
         }
     }

@@ -22,16 +22,14 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
         public async Task<StockViewModel> InsertAsync(StockInput shoeInput)
         {
             var stock = new Domain.Entities.Stock(shoeInput.ProductId,
-                                   shoeInput.Color,
-                                   shoeInput.Size,
-                                   shoeInput.Quantity,
-                                   shoeInput.Price);
+                                                   shoeInput.Size,
+                                                   shoeInput.Quantity);
 
-            await _stockRepository
-                    .GetStockByProductIdAsync(stock.ProductId)
-                    .ConfigureAwait(false);
+            var stockExist =  await _stockRepository
+                                        .GetStockByProductIdAsync(stock.ProductId)
+                                        .ConfigureAwait(false);
 
-            if (stock is not null)
+            if (stockExist is not null)
                 return default!;
 
             await _stockRepository
@@ -40,7 +38,7 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
 
             var stockViewModel = stock.ToViewModel();
 
-            var keyShoeCatalog = $"Brand ID: {stock.ProductId} - Item ID: {stock.Id}";
+            var keyShoeCatalog = $"Stock :: Product ID: {stock.ProductId} - Item ID: {stock.Id}";
 
             await _cacheRepository
                      .InsertAsync<StockViewModel>(keyShoeCatalog, stockViewModel)
@@ -68,10 +66,8 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
                 throw new Exception("Produto não encontrado");
 
 
-            itemStock.Update(stockInput.Color,
-                             stockInput.Size,
-                             stockInput.Quantity,
-                             stockInput.Price);
+            itemStock.Update(stockInput.Size,
+                             stockInput.Quantity);
 
             await _stockRepository
                         .UpdateAsync(itemStock)

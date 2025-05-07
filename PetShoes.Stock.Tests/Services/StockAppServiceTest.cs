@@ -68,11 +68,8 @@ namespace PetShoes.Stock.Tests.Services
             var stockInput = new StockInput()
             {
                 ProductId = stock.ProductId,
-                Color = stock.Color,
                 Size = stock.Size,
-                Quantity = stock.Quantity,
-                Price = stock.Price
-
+                Quantity = stock.Quantity
             };
 
             _stockRepository.GetStockByProductIdAsync(Arg.Any<Guid>()).Returns(stock);
