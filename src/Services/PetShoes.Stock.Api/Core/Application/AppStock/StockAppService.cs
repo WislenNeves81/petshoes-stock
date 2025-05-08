@@ -37,8 +37,8 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
                         .ConfigureAwait(false);
 
             var stockViewModel = stock.ToViewModel();
-
-            var keyShoeCatalog = $"Stock :: Product ID: {stock.ProductId} - Item ID: {stock.Id}";
+            
+            var keyShoeCatalog = $"stock:productId:{stock.ProductId}:stockId:{stock.Id}";
 
             await _cacheRepository
                      .InsertAsync<StockViewModel>(keyShoeCatalog, stockViewModel)
