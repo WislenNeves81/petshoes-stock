@@ -6,7 +6,7 @@
         public Guid ProductId { get; set; }
         public int Size { get; set; }
         public int Quantity { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
 }

@@ -32,17 +32,21 @@ namespace PetShoes.Stock.Api.Core.Application.AppStock
             if (stockExist is not null)
                 return default!;
 
+            //TODO :: IMPLEMENTAR A PRÁTICA ANTI-CORRUPÇÃO
+
             await _stockRepository
                         .InsertAsync(stock)
                         .ConfigureAwait(false);
 
             var stockViewModel = stock.ToViewModel();
-            
+
             var keyShoeCatalog = $"stock:productId:{stock.ProductId}:stockId:{stock.Id}";
 
             await _cacheRepository
                      .InsertAsync<StockViewModel>(keyShoeCatalog, stockViewModel)
                      .ConfigureAwait(false);
+
+            //TODO :: IMPLEMENTAR A PRÁTICA ANTI-CORRUPÇÃO
 
             return stockViewModel;
         }
