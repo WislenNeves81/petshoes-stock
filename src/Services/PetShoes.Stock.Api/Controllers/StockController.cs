@@ -40,10 +40,11 @@ namespace PetShoes.Stock.Api.Controllers
             return Ok(itemStock);
         }
         [HttpPut]
+        [Route("{itemStockId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> PutAsync(Guid itemStockId, [FromBody] StockInput stockInput)
+        public async Task<IActionResult> PutAsync([FromRoute]Guid itemStockId, [FromBody] StockInput stockInput)
         {
             var stockItem = await _stockAppService
                                     .UpdateAsync(itemStockId, stockInput)
