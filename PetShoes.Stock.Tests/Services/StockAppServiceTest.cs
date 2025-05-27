@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using FluentAssertions;
+using Marraia.Notifications.Interfaces;
 using MyProfit.Foundation.Redis.Repositories.Interfaces;
 using NSubstitute;
 using PetShoes.Stock.Api.Core.Application.AppStock;
@@ -14,6 +15,7 @@ namespace PetShoes.Stock.Tests.Services
     {
         private StockAppService _stockAppService;
         private IStockRepository _stockRepository;
+        private ISmartNotification _smartNotification;
         private Faker _faker;
 
         private const int defaultReceived = 1;
@@ -22,7 +24,11 @@ namespace PetShoes.Stock.Tests.Services
         {
             _stockRepository = Substitute.For<IStockRepository>();
             var cacheRepositoryMock = Substitute.For<ICacheRepository>();
-            _stockAppService = new StockAppService(_stockRepository, cacheRepositoryMock);
+            _smartNotification = Substitute.For<ISmartNotification>();
+
+
+
+            _stockAppService = new StockAppService(_stockRepository, cacheRepositoryMock, _smartNotification);
 
             _faker = new Faker();
         }

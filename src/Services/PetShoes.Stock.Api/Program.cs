@@ -1,9 +1,12 @@
+using Marraia.Notifications.Configurations;
 using PetShoes.Stock.Api.Core.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+builder.Services.AddSmartNotification();
 
 new RootBootstrapper().BootstrapperRegisterServices(builder.Services, builder.Configuration);
 

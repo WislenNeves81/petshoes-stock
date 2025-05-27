@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Marraia.Notifications.Base;
+using Marraia.Notifications.Models;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using PetShoes.Stock.Api.Core.Application.AppStock.Input;
 using PetShoes.Stock.Api.Core.Application.AppStock.Interface;
 
@@ -6,11 +9,12 @@ namespace PetShoes.Stock.Api.Controllers
 {
     [Route("petshoes/api/[controller]")]
     [ApiController]
-    public class StockController : ControllerBase
+    public class StockController : BaseController
     {
         private readonly IStockAppService _stockAppService;
 
-        public StockController(IStockAppService stockAppService)
+        public StockController(IStockAppService stockAppService, INotificationHandler<DomainNotification> notification)
+            : base(notification)
         {
             _stockAppService = stockAppService;
         }
@@ -50,7 +54,7 @@ namespace PetShoes.Stock.Api.Controllers
                                     .UpdateAsync(itemStockId, stockInput)
                                     .ConfigureAwait(false);
 
-            return Ok(stockItem);
+            return OkOrNotFound(stockItem);
         }
         [HttpDelete]
         [ProducesResponseType(200)]

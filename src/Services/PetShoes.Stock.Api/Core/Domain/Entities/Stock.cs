@@ -7,6 +7,17 @@ namespace PetShoes.Stock.Api.Core.Domain.Entities
     {
         public Stock(){}
 
+        public Stock(Guid productId,
+                                Guid stockId,
+                                int size,
+                                int quantity)
+        {
+            ProductId = productId;
+            Id = stockId;
+            Size = size;
+            Quantity = quantity;
+        }
+
         public Guid ProductId { get; set; } 
         public int Size { get; set; } 
         public int Quantity { get; set; } 
@@ -23,11 +34,9 @@ namespace PetShoes.Stock.Api.Core.Domain.Entities
 
             SetDefaultValues();
         }
-        public void Update(int size, 
-                           int quantity)
+        public void Update(int quantity)
         {
-            Size = size;
-            Quantity = quantity;
+            Quantity -= quantity;
             UpdatedAt = DateTime.Now;
         }
         private void SetDefaultValues()
